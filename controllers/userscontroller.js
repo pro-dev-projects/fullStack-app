@@ -48,7 +48,7 @@ export const createUser = async (req,res,next)=>{
         req.body.password = hashedPassword; */
             const user = new UsersCollection(req.body)
             if(req.file){
-                user.profileImage= `http://localhost:4000/${req.file.filename}`
+                user.profileImage= `/${req.file.filename}`
             }
             
              await user.save()
@@ -67,7 +67,7 @@ export const updateUser = async (req,res,next)=>{
     try{
         let user = await UsersCollection.findById(req.params.id)
         if(req.file){
-            user.profileImage = `http://localhost:4000/${req.file.filename}`
+            user.profileImage = `/${req.file.filename}`
         }
         if(req.body.password){
            user.password = req.body.password 
